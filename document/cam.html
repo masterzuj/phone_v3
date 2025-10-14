@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Kameraaufnahmen</title>
+    <style>
+        #video {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+			position: fixed;
+			right: 0px;
+			bottom: 0px;
+        }
+        #aufnahme {
+            width: 200px;
+            /*background-color: lightgray;*/
+        }
+        #aufnahme video{
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+        }
+		.steuerung{
+		  position: fixed;  
+		  top: 20px; 
+		  right: 0px;  
+		  /*transform: translateX(-50%);  */
+		}
+    </style>
+	<script>
+	console.log("cam");
+</script>
+</head>
+<body>
+    
+    <video id="video" autoplay playsinline></video>
+		
+    <div id="aufnahme"></div>
+	
+	
+		<div class="steuerung">
+			<button id="startBtn" style="font-size: 30px; color: blue;">⏺</button>
+			<button id="stopBtn" style="font-size: 30px; color: red;">⏹</button><br/><br/>
+		</div>
+    <script>
+        let mediaRecorder;
+        let recordedChunks = [];
+        const video = document.getElementById('video');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const aufnahmeDiv = document.getElementById('aufnahme');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.play();
+                mediaRecorder = new MediaRecorder(stream);
+
+                mediaRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                    const videoURL = URL.createObjectURL(blob);
+                    const recordedVideo = document.createElement('video');
+                    recordedVideo.src = videoURL;
+                    recordedVideo.controls = true;
+                    aufnahmeDiv.prepend(recordedVideo); // Aufnahme hinzufügen
+					//aufnahmeDiv.innerHTML += "</br><input type='text' style='width:200px;'></br>";
+					
+                    recordedChunks = []; // Chunk Array leeren
+                };
+
+                startBtn.onclick = () => {
+                    mediaRecorder.start();
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth' // Optional: für sanftes Scrollen
+                    });
+                };
+
+                stopBtn.onclick = () => {
+                    mediaRecorder.stop();
+                    startBtn.disabled = false;
+                    stopBtn.disabled = true;
+
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth' // Optional: für sanftes Scrollen
+                    });
+                };
+            })
+            .catch(error => {
+                console.error('Kamera-Zugriff verweigert:', error);
+            });
+    </script>
+</body>
+</html>

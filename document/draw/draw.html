@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="jquery-3.7.1.js" sourcemappingurl="jquery-3.7.1.min.map"></script>
+	<script src="./eschmar/crosshair.js"></script>
+	<link rel="stylesheet" href="./eschmar/style.css">
+	<script>
+		console.log("draw");
+	</script>
+	
+	<style>
+	
+	
+	
+	
+	
+	.painter{
+	
+		background-color: blue;
+		width: 3px;
+		height: 3px;
+		border-radius:1px;
+		position: absolute;
+	}
+		
+		#crosshair{
+		 	height: 750px;
+			width: 450px;
+		}
+	
+	</style>
+	<div id="crosshair"></div>
+	
+	<script>
+		$( document ).ready(function() {
+			$('#crosshair').crosshair({
+				callback: function(crosshair) {
+					console.log("Pixel coordinates: ("+crosshair.coords.x+"|"+crosshair.coords.y+")");
+					console.log("Relative position: X: "+crosshair.pct.x+"%, Y: "+crosshair.pct.y+"%");
+				}
+			});
+		});
+	</script>
+</head>
+
+
+

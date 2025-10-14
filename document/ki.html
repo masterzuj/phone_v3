@@ -1,0 +1,152 @@
+<title>ZUJKOV.COM KI</title>
+<script src="jquery-3.7.1.js"></script>
+	<script>
+		console.log("KI");
+	</script>
+<style>
+	
+	body{
+		font-family: Courier New;
+	}
+	
+	.answer{
+		
+		padding: 10px;
+		font-size: 20px;
+		background-color: lightgray;
+		border-radius: 5px;
+		margin: 10px;
+		
+	}
+	
+	.quest{
+		
+		padding: 10px;
+		font-size: 20px;
+		background-color: lightblue;
+		border-radius: 5px;
+		margin: 10px;
+		
+	}
+	
+	#outputText{
+		position: fixed;
+		bottom: 80px;
+		width: 400px;
+		height: 600px; /* Set a fixed height for the container */
+  		overflow-y: scroll;
+		border: 2px solid skyblue; 
+		border-radius: 10px;
+	}
+	
+	#KIpng{
+		height: 80px; 
+		width: 80px; 
+		position: fixed; 
+		bottom: 600px; 
+		left: 170px;
+	}
+	
+	#KIinput{
+		position: fixed; 
+		bottom: 20px;
+		border: 2px solid skyblue; 
+		border-radius: 10px;
+		font-family: Courier New;
+	}
+	
+	.KIinputtext{
+		font-size: 22px; 
+		font-family: Courier New;
+		border-radius: 10px;
+	}
+	
+	.KIinputsubmit{
+		font-size: 22px; 
+		background-color: lightblue; 
+		font-family: Courier New;
+		border-radius: 10px;
+	}
+	
+	#impressum{
+		position:fixed; 
+		bottom: 0px; 
+		right: 0px; 
+		font-size: 17px; 
+		background-color: white;
+	}
+</style>
+
+<!--
+<a href="https://zujkov.com/KI"><img src="KI.png" id="KIpng"/></a>
+-->
+
+	
+	<div id="outputText"></div>
+
+	<div id="KIinput">
+		<input type="text" id="userInput" placeholder="Ihre Frage?" class="KIinputtext" autofocus/>
+		<button id="submitButton" class="KIinputsubmit" >Fragen!</button>
+	</div>
+
+<!--
+	<div id="impressum"><a href="https://itrk.legal/QqA.8V.KaB.html?impressum-datenschutz" target="_blank" style="font-size: 17px; color: black;">Impressum | Datenschutzerklärung</a><br/>(c) ZUJKOV COM | all rights reserved</div>
+-->
+<script>
+$(document).ready(function() {
+    $('#submitButton').click(function() {
+        var userInput = $('#userInput').val();
+        callBackendForGemini(userInput);
+    });
+/*
+    $('#userInput').on('keypress', function(event) {
+        if (event.which === 13) { // Enter key pressed
+            $('#submitButton').click();
+        }
+		
+    });
+*/
+    function callBackendForGemini(prompt) {
+
+		$('#userInput').val("");
+		
+		$('#outputText').prepend("<div class='quest'>" + prompt + "</div>");
+		
+        $.ajax({
+            url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=AIzaSyCn_6o0K-v7chZl2uSIHmGscMnJjXpmNXg', //
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ //
+                "contents": [
+                    {
+                        "parts": [
+                            {
+                                "text": prompt // 
+                            }
+                        ]
+                    }
+                ],
+                "generationConfig": {
+                    "maxOutputTokens": 200,
+                    "temperature": 0.8,
+                    "topP": 0.9
+                }
+            }),
+            success: function(data) {
+                console.log('Erfolg:', data);
+                //$('#outputText').text(JSON.stringify(data, null, 2)); // Zeigt die Antwort formatiert an
+				//$('#outputText').text(JSON.stringify(data, null, 2)); // Zeigt die Antwort formatiert an
+				
+				$('#outputText').prepend("<div class='answer'>" + data.candidates[0].content.parts[0].text + "</div>");
+            },
+            error: function(error) {
+                console.error('Fehler:', error);
+                $('#outputText').prepend('Fehler bei der Anfrage: ' + error.responseText);
+            }
+        });
+		//$("#outputText").scrollTop(0);
+    }
+	
+	
+});
+</script>

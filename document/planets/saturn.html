@@ -1,0 +1,58 @@
+
+ <script src="./three100.js"></script>
+<head>
+	
+
+</head>
+  
+<body>
+<canvas id="canvas" style="position:absolute; top:0px; left: 50%; margin-left:-200px; width: 400px;" width="400" height="300"></canvas>
+		
+		
+
+<script>
+
+var camera, scene, renderer, geometry, material, mesh;
+
+var texture;
+
+function init() {
+
+	
+	texture = new THREE.TextureLoader().load( "./textures/saturn.jpg");
+	scene = new THREE.Scene();
+
+	geometry = new THREE.SphereGeometry( 50, 30, 30 );
+	material = new THREE.MeshBasicMaterial( { map: texture} );
+
+	mesh = new THREE.Mesh( geometry, material );
+	scene.add( mesh );
+
+	camera = new THREE.PerspectiveCamera( 75, 500 / 500, 2, 1000 );
+	camera.position.z = 100;
+
+
+renderer = new THREE.WebGLRenderer({canvas: document.querySelector("#canvas"), alpha: true});
+		renderer.setClearColor( 0x000000, 0 ); // the default
+	//renderer = new THREE.WebGLRenderer();
+	renderer.setSize( 400, 400 );
+
+	document.body.appendChild( renderer.domElement );
+
+}
+
+function animate() {
+
+	requestAnimationFrame( animate );
+
+	mesh.rotation.y += 0.001;
+
+	renderer.render( scene, camera );
+
+}
+
+init();
+animate();
+
+</script>
+</body>

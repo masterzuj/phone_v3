@@ -1,0 +1,72 @@
+<script src="./jquery-3.7.1.js"></script>
+
+<meta charset="UTF-8">
+		
+		
+	<div id="candle" style="position: fixed; bottom: 0px; left: calc(50% - 100px); width: 205px; height:20px; background-color: steelblue;">
+	
+		<div style="position: fixed; bottom: 20px; width: 200px;">
+			<div style="float:left; height: 40px; width: 40px; background-color: lightblue; border-radius: 20px; text-align: center; font-size: 24px;" id="bottom">⬇️</div>
+			<div style="float:right; height: 40px; width: 40px; background-color: lightblue; border-radius: 20px; text-align: center; font-size: 24px;" id="top">⬆️</div>
+			
+			<br clear="both"/>
+		</div>
+	
+		<input
+		type="range"
+		class="candle"
+		min="5"
+		max="95"
+		value="0"
+		step="1" 
+		style = "width: 200px; position: fixed; bottom: 0px; accent-color: green;"
+		/>
+	
+	</div>
+	
+	
+	
+<script>
+
+var candle_height = 0;
+
+$(".candle").on("change", function() {
+
+	candle_height = Number($(".candle").val());
+	console.log(candle_height + "%");
+	
+	//$("#candle").css("height", candle_height + "%" );
+	$("#candle").animate({height: candle_height + "%"}, 3000);
+	
+});
+
+$("#top").on("click", function() {
+	if(candle_height <= 90){
+		candle_height += 5;
+	}
+	
+	console.log(candle_height + "%");
+
+	//$("#candle").css("height", candle_height + "%" );
+	$("#candle").animate({height: candle_height + "%"}, 3000);
+	
+	$(".candle").val(candle_height);
+	
+});
+
+$("#bottom").on("click", function() {
+	if(candle_height >= 10){
+		candle_height -= 5;
+	}
+	
+	console.log(candle_height + "%");
+	
+	//$("#candle").css("height", candle_height + "%" );
+	$("#candle").animate({height: candle_height + "%"}, 3000);	
+
+	$(".candle").val(candle_height);
+	
+});
+
+
+</script>

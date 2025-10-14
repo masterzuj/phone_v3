@@ -1,0 +1,94 @@
+
+<title>Kreuz</title>
+        <style>
+#canvas{
+	position:absolute;
+	top:200px;
+  	z-index:200;
+}
+</style>
+
+	<script>
+		console.log("Cross");
+	</script>
+
+
+<center><canvas id="canvas"></canvas></center>
+		<script src="135three.min.js"></script>
+
+		<script>
+			
+		renderer = new THREE.WebGLRenderer({canvas: document.querySelector("#canvas"), alpha: true});
+		renderer.setClearColor( 0x000000, 0 ); // the default
+
+	renderer.setSize( 450, 450 );
+	document.body.appendChild( renderer.domElement );
+
+	var camera = new THREE.PerspectiveCamera( 45, 500 / 500, 1, 500 );
+	camera.position.set( 0, 20, 100 );
+	camera.lookAt( 0, 0, 0 );
+
+	var scene = new THREE.Scene();
+
+var geometry = new THREE.BoxGeometry( 20, 5, 5 );
+var material = new THREE.MeshStandardMaterial( {color: 0x555555, flatShading: true, metallness: 1} );
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+
+cube.position.set(0,30,0);
+
+
+
+var geometry2 = new THREE.BoxGeometry( 5, 40, 5 );
+var material = new THREE.MeshStandardMaterial( {color: 0x555555, flatShading: true, metallness: 1} );
+var cube2 = new THREE.Mesh( geometry2, material );
+scene.add( cube2 );
+
+cube2.position.set(0,20,0);
+
+
+
+  // Add 3 lights.//gold
+  var light1 = new THREE.PointLight(0xe2b007, 1, 0);
+  light1.position.set(0, 25, 0);
+  scene.add(light1);
+
+  var light2 = new THREE.PointLight(0xe2b007, 1, 0);
+  light2.position.set(0, -25, 0);
+  scene.add(light2);
+			
+  var light3 = new THREE.PointLight(0xe2b007, 1, 0);
+  light3.position.set(-25, 0, 0);
+  scene.add(light3);
+  
+  var light4 = new THREE.PointLight(0xe2b007, 1, 0);
+  light4.position.set(25, 0, 0);
+  scene.add(light4);
+  
+  
+  var light5 = new THREE.PointLight(0xe2b007, 1, 0);
+  light3.position.set(0, 0, 25);
+  scene.add(light5);
+  
+  var light6 = new THREE.PointLight(0xe2b007, 1, 0);
+  light4.position.set(0, 0, -25);
+  scene.add(light6);
+
+
+renderer.render( scene, camera );
+	
+			
+			//camera.position.z = 5;
+
+			var animate = function () {
+				requestAnimationFrame( animate );
+
+				scene.rotation.y += 0.01;
+				//line.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+			 
+		</script>

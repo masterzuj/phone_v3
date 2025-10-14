@@ -1,0 +1,46 @@
+<script src="./p5.js"></script>
+
+<input type="range" id="mySlider0" min="0" max="200" value="100" orient="vertical" style="writing-mode: bt-lr; -webkit-appearance: slider-vertical; width: 30px; height: 300px; position: absolute; left: 300px; top: 50px;">
+
+<input type="range" id="mySlider1" min="-100" max="100" value="20" orient="vertical" style="writing-mode: bt-lr; -webkit-appearance: slider-vertical; width: 30px; height: 300px; position: absolute; left: 340px; top: 50px;">
+
+<input type="range" id="mySlider2" min="0" max="120" value="50" orient="vertical" style="writing-mode: bt-lr; -webkit-appearance: slider-vertical; width: 30px; height: 300px; position: absolute; left: 380px; top: 50px;">
+<input type="range" id="mySlider3" min="-80" max="0" value="-50" orient="vertical" style="writing-mode: bt-lr; -webkit-appearance: slider-vertical; width: 30px; height: 300px; position: absolute; left: 420px; top: 50px;">
+
+
+<script>
+
+function draw() {
+    background(220);
+
+    
+
+    stroke(0);
+    strokeWeight(2);
+    line(100, map(document.getElementById('mySlider2').value, 0, 100, 350, 50), 200, map(document.getElementById('mySlider2').value, 0, 100, 350, 50));
+    line(100, map(document.getElementById('mySlider3').value, 0, 100, 350, 50), 200, map(document.getElementById('mySlider3').value, 0, 100, 350, 50));
+
+    stroke(0);
+    strokeWeight(2);
+    let y1 = map(document.getElementById('mySlider2').value, 0, 100, 350, 50);
+    let y2 = map(document.getElementById('mySlider3').value, 0, 100, 350, 50);
+    line(150, y1, 150, y2);
+    noStroke();
+
+
+    let slider1Value = parseInt(document.getElementById('mySlider1').value, 10);
+    if (slider1Value < 0) {
+        fill(255, 0, 0);
+    } else {
+        fill(100, 150, 200);
+    }
+    rect(100, map(document.getElementById('mySlider0').value, 0, 100, 0, 350), 100, -map(document.getElementById('mySlider1').value, 0, 100, 0, 350));
+}
+
+
+function setup() {
+  createCanvas(300, 600);
+  background(220);
+}
+
+</script>

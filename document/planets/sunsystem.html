@@ -1,0 +1,395 @@
+<html>
+<head>
+ <script src="./three100.js"></script>
+</head>
+  <style>
+    
+    canvas{
+    position:absolute;
+    top:0px;
+	left: 50%; 
+	margin-left:-350px; 
+	width: 700px;
+		
+    }
+  </style>
+<body>
+
+	
+	<canvas id="canvas" style="position:absolute; top:0px; left: 50%; margin-left:-350px; width: 700px;" width="700" height="500"></canvas>
+	
+	
+<script>
+
+var camera, scene, renderer, geometry, material, mesh;
+var geometry2, material2, mesh2;
+var geometry3, material3, mesh3;
+var geometry4, material4, mesh4;
+var geometry5, material5, mesh5;
+var geometry6, material6, mesh6;
+var geometry7, material7, mesh7;
+var geometry8, material8, mesh8;
+var geometry9, material9, mesh9;
+var geometry10, material10, mesh10;
+
+var texture, texture2, texture3, texture4, texture5, texture6, texture7, texture8, texture9, texture10;
+
+function init() {
+
+	
+	// textures
+	texture = new THREE.TextureLoader().load( "./textures/sun.jpg");
+	scene = new THREE.Scene();
+
+	
+	geometry = new THREE.SphereGeometry( 50, 30, 30 );
+	
+	material = new THREE.MeshBasicMaterial( { map: texture} );
+
+	
+	mesh = new THREE.Mesh( geometry, material );
+	
+	scene.add( mesh );
+
+
+	////////////2 EARTH
+	texture2 = new THREE.TextureLoader().load( "./textures/earth.jpg");
+	
+
+	
+	geometry2 = new THREE.SphereGeometry( 15, 30, 30 );
+	
+	material2 = new THREE.MeshBasicMaterial( { map: texture2} );
+
+	
+	mesh2 = new THREE.Mesh( geometry2, material2 );
+	
+	
+	mesh2.position.set(150,0,0);
+	
+	scene.add( mesh2 );
+	
+	
+	
+	
+	
+	
+	
+	// parent
+var parent = new THREE.Object3D();
+scene.add( parent );
+
+// pivots
+var pivot1 = new THREE.Object3D();
+
+pivot1.rotation.y = 1;
+parent.add( pivot1 );
+
+pivot1.add( mesh2 );
+	
+	
+	
+	
+	
+	////////////3 Mercury
+	texture3 = new THREE.TextureLoader().load( "./textures/mercury.jpg");
+	
+
+	
+	geometry3 = new THREE.SphereGeometry( 10, 30, 30 );
+	
+	material3 = new THREE.MeshBasicMaterial( { map: texture3} );
+
+	
+	mesh3 = new THREE.Mesh( geometry3, material3 );
+	
+	
+	mesh3.position.set(70,0,0);
+	
+	scene.add( mesh3 );
+	
+	
+	
+	
+	//Rotation
+var parent2 = new THREE.Object3D();
+scene.add( parent2 );
+
+// pivots
+var pivot2 = new THREE.Object3D();
+
+pivot2.rotation.y = 0;
+parent2.add( pivot2 );
+
+pivot2.add( mesh3 );
+	
+	
+	
+	
+	
+	
+	////////////4 VEnus
+	texture4 = new THREE.TextureLoader().load( "./textures/venus.jpg");
+	
+
+	
+	geometry4 = new THREE.SphereGeometry( 20, 30, 30 );
+	
+	material4 = new THREE.MeshBasicMaterial( { map: texture4} );
+
+	
+	mesh4 = new THREE.Mesh( geometry4, material4 );
+	
+	
+	mesh4.position.set(110,0,0);
+	
+	scene.add( mesh4 );
+	
+	
+	
+		//Rotation
+var parent3 = new THREE.Object3D();
+scene.add( parent3 );
+
+// pivots
+var pivot3 = new THREE.Object3D();
+
+pivot3.rotation.y = 3;
+parent3.add( pivot3 );
+
+pivot3.add( mesh4 );
+	
+	////////////5 MARS
+	texture5 = new THREE.TextureLoader().load( "./textures/mars.jpg");
+	
+
+	
+	geometry5 = new THREE.SphereGeometry( 18, 30, 30 );
+	
+	material5 = new THREE.MeshBasicMaterial( { map: texture5} );
+
+	
+	mesh5 = new THREE.Mesh( geometry5, material5 );
+	
+	
+	mesh5.position.set(200,0,0);
+	
+	scene.add( mesh5 );
+	
+	
+		//Rotation
+var parent4 = new THREE.Object3D();
+scene.add( parent4 );
+
+// pivots
+var pivot4 = new THREE.Object3D();
+
+pivot4.rotation.y = 4;
+parent4.add( pivot4 );
+
+pivot4.add( mesh5 );
+	
+	////////////6 JUPITER
+	texture6 = new THREE.TextureLoader().load( "./textures/jupiter.gif");
+	
+
+	
+	geometry6 = new THREE.SphereGeometry( 30, 30, 30 );
+	
+	material6 = new THREE.MeshBasicMaterial( { map: texture6} );
+
+	
+	mesh6 = new THREE.Mesh( geometry6, material6 );
+	
+	
+	mesh6.position.set(280,0,0);
+	
+	scene.add( mesh6 );
+	
+	
+		//Rotation
+var parent5 = new THREE.Object3D();
+scene.add( parent5 );
+
+// pivots
+var pivot5 = new THREE.Object3D();
+
+pivot5.rotation.y = 5;
+parent5.add( pivot5 );
+
+pivot5.add( mesh6 );
+	
+	////////////7 SATURN
+	texture7 = new THREE.TextureLoader().load("./textures/saturn.jpg");
+	
+
+	
+	geometry7 = new THREE.SphereGeometry( 25, 30, 30 );
+	
+	material7 = new THREE.MeshBasicMaterial( { map: texture7} );
+
+	
+	mesh7 = new THREE.Mesh( geometry7, material7 );
+	
+	
+	mesh7.position.set(360,0,0);
+	
+	scene.add( mesh7 );
+	
+	
+		//Rotation
+var parent6 = new THREE.Object3D();
+scene.add( parent6 );
+
+// pivots
+var pivot6 = new THREE.Object3D();
+
+pivot6.rotation.y = 6;
+parent6.add( pivot6 );
+
+pivot6.add( mesh7 );
+	
+	
+	////////////8 URANUS
+	texture8 = new THREE.TextureLoader().load( "./textures/uranus.jpg");
+	
+
+	
+	geometry8 = new THREE.SphereGeometry( 18, 30, 30 );
+	
+	material8 = new THREE.MeshBasicMaterial( { map: texture8} );
+
+	
+	mesh8 = new THREE.Mesh( geometry8, material8 );
+	
+	
+	mesh8.position.set(440,0,0);
+	
+	scene.add( mesh8 );
+	
+	
+		//Rotation
+var parent7 = new THREE.Object3D();
+scene.add( parent7 );
+
+// pivots
+var pivot7 = new THREE.Object3D();
+
+pivot7.rotation.y = 6.5;
+parent7.add( pivot7 );
+
+pivot7.add( mesh8 );
+	
+	
+	////////////9 Neptun
+	texture9 = new THREE.TextureLoader().load( "./textures/neptune.jpg");
+	
+
+	
+	geometry9 = new THREE.SphereGeometry( 16, 30, 30 );
+	
+	material9 = new THREE.MeshBasicMaterial( { map: texture9} );
+
+	
+	mesh9 = new THREE.Mesh( geometry9, material9 );
+	
+	
+	mesh9.position.set(530,0,0);
+	
+	scene.add( mesh9 );
+	
+	
+		//Rotation
+var parent8 = new THREE.Object3D();
+scene.add( parent8 );
+
+// pivots
+var pivot8 = new THREE.Object3D();
+
+pivot8.rotation.y = 7;
+parent8.add( pivot8 );
+
+pivot8.add( mesh9 );
+		////////////10 Plutpo
+	texture10 = new THREE.TextureLoader().load( "./textures/pluto.jpg");
+	
+
+	
+	geometry10 = new THREE.SphereGeometry( 5, 30, 30 );
+	
+	material10 = new THREE.MeshBasicMaterial( { map: texture10} );
+
+	
+	mesh10 = new THREE.Mesh( geometry10, material10 );
+	
+	
+	mesh10.position.set(600,0,0);
+	
+	scene.add( mesh10 );
+	
+	
+		//Rotation
+var parent9 = new THREE.Object3D();
+scene.add( parent9 );
+
+// pivots
+var pivot9 = new THREE.Object3D();
+
+pivot9.rotation.y = 7.5;
+parent9.add( pivot9 );
+
+pivot9.add( mesh10 );
+	
+	
+	
+	
+
+	
+	camera = new THREE.PerspectiveCamera( 45, 700 / 500, 2, 1000 );
+	
+	camera.position.z = 700;
+
+	renderer = new THREE.WebGLRenderer({canvas: document.querySelector("#canvas"), alpha: true});
+		renderer.setClearColor( 0x000000, 0 );
+	//renderer = new THREE.WebGLRenderer();
+	
+	renderer.setSize( 700, 500 );
+
+	
+	document.body.appendChild( renderer.domElement );
+
+}
+
+function animate() {
+
+	
+	requestAnimationFrame( animate );
+
+	
+	mesh.rotation.y += 0.002;
+	
+	mesh2.rotation.y += 0.02;
+	mesh3.rotation.y += 0.02;
+	mesh4.rotation.y += 0.02;
+	mesh5.rotation.y += 0.02;
+	mesh6.rotation.y += 0.02;
+	mesh7.rotation.y += 0.02;
+	mesh8.rotation.y += 0.02;
+	mesh9.rotation.y += 0.02;
+	mesh10.rotation.y += 0.02;
+	
+	scene.rotation.y += 0.002
+
+	
+	
+	
+	renderer.render( scene, camera );
+
+}
+
+init();
+animate();
+
+</script>
+</body>
+</html>
