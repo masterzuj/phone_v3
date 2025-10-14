@@ -113,7 +113,7 @@ $(document).ready(function() {
 		$('#outputText').prepend("<div class='quest'>" + prompt + "</div>");
 		
         $.ajax({
-            url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=AIzaSyCn_6o0K-v7chZl2uSIHmGscMnJjXpmNXg', //
+            url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=[GEMINIKEY]', //
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ //
