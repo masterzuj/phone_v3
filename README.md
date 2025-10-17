@@ -2,6 +2,9 @@
 
     git clone https://github.com/masterzuj/phone_v3.git
 
+<img width="789" height="918" alt="image" src="https://github.com/user-attachments/assets/80b5501c-4b1c-41d9-bb6b-010cada62b8c" />
+
+
 The SCRIPT is under MIT License.
 
 FOR GLB Objects:
