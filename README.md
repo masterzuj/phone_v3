@@ -7,7 +7,7 @@
 
 The SCRIPT is under MIT License.
 
-FOR GLB Objects:
+For GLB Objects:
 
 License for 3D Models Created with Autodesk Fusion 360 (Free, Non-Commercial Use)
 
