@@ -2,7 +2,9 @@
 
     git clone https://github.com/masterzuj/phone_v3.git
 
+The SCRIPT is under MIT License.
 
+FOR GLB Objects:
 
 License for 3D Models Created with Autodesk Fusion 360 (Free, Non-Commercial Use)
 
